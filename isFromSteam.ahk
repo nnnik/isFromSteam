@@ -7,9 +7,9 @@ Return
 
 isFromSteam( dwPID )
 {
-	return isSteamChild( dwPID ) || hasSteamDll( dwPID )
+	return isSteamChild( dwPID )
 }
-
+/* VAC unsafe
 hasSteamDll(dwPID) ;Thanks to HotkeyIt ( I just stole and modified his function from: https://github.com/HotKeyIt/_Struct/blob/master/_Struct.Example.ahk )
 {
 	static TH32CS_SNAPMODULE:=0x00000008,INVALID_HANDLE_VALUE:=-1,hModuleSnap := new _Struct("HANDLE"), MAX_PATH:=260,MAX_MODULE_NAME32:=255,_MODULEENTRY32:="
@@ -50,7 +50,7 @@ hasSteamDll(dwPID) ;Thanks to HotkeyIt ( I just stole and modified his function 
 	
 	DllCall("CloseHandle","PTR",hModuleSnap)
 	return 0
-}
+}*/
 
 isSteamChild( dwPID )
 {
