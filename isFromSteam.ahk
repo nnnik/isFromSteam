@@ -2,8 +2,13 @@
 
 f4::
 WinGet, swPID, PID, A
-Msgbox % getParentPID( swPID ) . "<=" . swPID
+Msgbox % isFromSteam( swPID )
 Return
+
+isFromSteam( dwPID )
+{
+	return isSteamChild( dwPID ) || hasSteamDll( dwPID )
+}
 
 hasSteamDll(dwPID) ;Thanks to HotkeyIt ( I just stole and modified his function from: https://github.com/HotKeyIt/_Struct/blob/master/_Struct.Example.ahk )
 {
@@ -45,6 +50,16 @@ hasSteamDll(dwPID) ;Thanks to HotkeyIt ( I just stole and modified his function 
 	
 	DllCall("CloseHandle","PTR",hModuleSnap)
 	return 0
+}
+
+isSteamChild( dwPID )
+{
+	Process,Exist,Steam.exe
+	steamPID := ErrorLevel
+	if !steamPID
+		return 0
+	else
+		return steamPID = getParentPID( dwPID )
 }
 
 getParentPID( dwPID ) ;Thanks to HotkeyIt ( I just stole and modified his function from: https://github.com/HotKeyIt/_Struct/blob/master/_Struct.Example.ahk )
