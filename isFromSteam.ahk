@@ -27,7 +27,6 @@ hasSteamDll(PID) ;Thanks to HotkeyIt ( I just stole and modified his function fr
         )"
 	me32 := new _Struct( _MODULEENTRY32 )
 	me32.dwSize := sizeof( _MODULEENTRY32 )
-	Msgbox
 	hModuleSnap := DllCall("CreateToolhelp32Snapshot","UInt", TH32CS_SNAPMODULE,"PTR", dwPID )
 	if( hModuleSnap = INVALID_HANDLE_VALUE )
 		return FALSE
